@@ -1,17 +1,17 @@
-export const ContactList = ({ contacts, handleDeleteContact }) => {
+export const ContactList = ({ contacts, deleteContact }) => {
   return (
     <ul>
       {contacts.map(contact => {
         return (
           <li key={contact.id}>
             {contact.name}: {contact.number}
-            {/* <button
+            <button
               id={contact.id}
-              onClick={id => handleDeleteContact(id)}
+              onClick={() => deleteContact(contact.id)}
               type="button"
             >
               Delite
-            </button> */}
+            </button>
           </li>
         );
       })}
