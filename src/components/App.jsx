@@ -6,6 +6,8 @@ import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from './Filter/Filter';
 
+import css from 'components/App.module.css';
+
 export class App extends React.Component {
   state = {
     contacts: [],
@@ -16,7 +18,8 @@ export class App extends React.Component {
     const { contacts } = this.state;
 
     const isExist = contacts.some(
-      existingContact => existingContact.name === contact.name
+      existingContact =>
+        existingContact.name.toLowerCase() === contact.name.toLowerCase()
     );
 
     if (isExist) {
@@ -50,9 +53,9 @@ export class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>Phonebook</h1>
+        <h1 className={css.title}>Phonebook</h1>
         <ContactForm onSubmit={this.addNewContact} />
-        <h2>Contacts</h2>
+        <h2 className={css.title}>Contacts</h2>
         <Filter filter={this.state.filter} onSetFilter={this.setFilter} />
         <ContactList
           contacts={this.filteredContacts()}
